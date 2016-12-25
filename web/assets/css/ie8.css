@@ -1,0 +1,34 @@
+/* Navbar
+============================================================================= */
+#main-nav { background: #fff }
+
+/* Fix social-media-icon background-size 
+============================================================================= */
+.sc-sm { background-image: url("../img/ie8-social-media-icons.png"); }
+
+/* Fix transparency
+============================================================================= */
+.carousel .carousel-caption p,
+.carousel-small .item .caption,
+.nivo-lightbox-theme-default.nivo-lightbox-overlay,
+#title .container .title-container .secondary { background: url(../img/ie8-transparent.png); }
+
+.categories li:hover a .post-counts { background: none }
+
+/* Hide anything that can't displayed properly
+============================================================================= */
+.dashicons,
+.breaking-news .title .triangle { display: none }
+
+/*Remove border on dropdown menu
+============================================================================= */
+.dropdown-menu { border: none }
+
+/*Fix menu's border
+============================================================================= */
+.navbar-nav > li.active a,
+.navbar-nav > li:hover a { border-color: transparent !important }
+
+/*Fix breaking news triangle gap
+============================================================================= */
+html[dir=rtl] .breaking-news .triangle { margin-right: -1px }

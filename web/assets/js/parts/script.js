@@ -1,0 +1,25 @@
+/* Warta v2.3.2 - http://themeforest.net/user/friskamax
+======================================================= */
+//@prepros-append vendor/bootstrap/carousel.js
+//@prepros-append vendor/bootstrap/dropdown.js
+//@prepros-append vendor/bootstrap/tab.js
+//@prepros-append vendor/bootstrap/collapse.js
+//@prepros-append vendor/bootstrap/transition.js
+//@prepros-append vendor/modernizr-custom-97074.js
+//@prepros-append vendor/jquery-hoverdir.js
+//@prepros-append vendor/jquery-placeholder.js
+//@prepros-append vendor/imagesloaded-pkgd.js
+//@prepros-append vendor/nivo-lightbox.js
+//@prepros-append vendor/jquery-marquee.js
+//@prepros-append vendor/jquery-rateit.js
+//@prepros-append vendor/tweetie.js
+//@prepros-append vendor/imgLiquid.js
+//@prepros-append no-mobile.js
+//@prepros-append carousel-large.js 
+//@prepros-append carousel-animation.js
+//@prepros-append slider.js
+//@prepros-append flickr-feed.js
+//@prepros-append accordion.js
+//@prepros-append iframe.js 
+//@prepros-append spoiler.js 
+//@prepros-append initialize.js 
