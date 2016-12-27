@@ -1,14 +1,19 @@
 <?php
+
 namespace AppBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="page",indexes={@ORM\Index(name="search_ind", columns={"slug"})})
+ * @ORM\Table(name="page")
  */
-class Page
-{
+class Page {
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -20,14 +25,15 @@ class Page
      * @ORM\Column(type="string", length=100)
      */
     private $title;
-    
+
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
-    
+
     /**
-     * @ORM\Column(type="string")
+     * @Vich\UploadableField(mapping="page_image", fileNameProperty="title", nullable=true)
      */
     private $image;
 
@@ -38,17 +44,71 @@ class Page
 
     /**
      * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $insert_date;
-    
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $update_date;
-    
+
     /**
      * @ORM\Column(type="smallint",length=1)
+     * @Assert\Choice({"0","1"})
      */
     private $status;
+    
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function setTitle($title) {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function setContent($content) {
+        $this->content = $content;
+        return $this;
+    }
+
+    public function getContent() {
+        return $this->content;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setImage($image) {
+        $this->image = $image;
+
+        if ($image) {
+            $this->update_date = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    public function getImage() {
+        return $this->image;
+    }
+   
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
 }
+
 ?>

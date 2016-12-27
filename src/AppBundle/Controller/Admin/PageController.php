@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PageController extends Controller {
@@ -38,9 +39,20 @@ class PageController extends Controller {
                     "expanded" => true,
                     "required" => true
                 ))
+                ->add('imageFile', FileType::class, array('label' => 'Sayfa Resmi'))
                 ->add('save', SubmitType::class, array('label' => 'Kaydet'))
                 ->getForm();
+        
+        $form->handleRequest($request);
+       
+        if ($form->isSubmitted() && $form->isValid()) {
+            $page = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($page);
+            $em->flush();
 
+            return $this->redirect($this->generateUrl('admin_page_list'));
+        }
         return $this->render('admin/page/pageAdd.html.twig', array(
                     'form' => $form->createView(),
         ));
