@@ -52,6 +52,36 @@
                                     {% endfor %}
                                 </div>
                                 {{ form_end(form) }}
+                                
+                                <div style="margin-top: 10px">
+                                    <div class="panel-body">
+                                        <!-- Button trigger modal -->
+                                        <button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">
+                                            Yazıyı Sil
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">Yazı Silme işlemini onayla</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        "{{ form.vars.data.title }}" başlıklı yazıyı geri dönüşümsüz olarak silmek istediğinizden emin misiniz? 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Vazgeç</button>
+                                                        <a href="{{ path("admin_page_delete",{id:form.vars.data.id }) }}"><button type="button" class="btn btn-primary">Onayla ve Sil</button></a>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /.modal -->
+                                    </div>
+                                </div>
                             </div>
 
                         </div>

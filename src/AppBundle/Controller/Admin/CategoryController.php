@@ -68,16 +68,18 @@ class CategoryController extends Controller {
                 ->listAllPageCategories();
 
         $jsonData = [];
-        foreach ($categories as $category) {
+        foreach ($categories["records"] as $category) {
             $_titlePattern = "<a href='%s'>%s</a>";
             $title = $category->getTitle();
             $categoryUpateUrl = $this->generateUrl('admin_category_update', array("id" => $category->getId()));
 
-            array_push($jsonData, array(sprintf($_titlePattern, $categoryUpateUrl, $title), $category->getStatus()));
+            array_push($jsonData, array(sprintf($_titlePattern, $categoryUpateUrl, $title), $category->getStatus() == 1 ? "Aktif" : "Pasif"));
         }
         $response = new JsonResponse();
         $response->setData(array(
-            'data' => $jsonData
+            'data' => $jsonData,
+            'recordsTotal' => $categories["recordsCount"],
+            'recordsFiltered' => $categories["recordsCount"]
         ));
         return $response;
     }

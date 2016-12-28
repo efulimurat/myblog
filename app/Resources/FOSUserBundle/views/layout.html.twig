@@ -29,9 +29,20 @@
 
 <body>
 
-<div id="wrapper">
-    {% include "admin/nav.html.twig" %}
-{% block content %}{% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /#wrapper -->
 
@@ -52,10 +63,8 @@
     if (typeof dataTablesEnabled != "undefined") {
         var dataTablesEnabled = true;
         $(document).ready(function () {
-            
+
             $('#dataTables-example').DataTable({
-                "bFilter" : bFilter,
-                "lFilter" : false,
                 responsive: true,
                 "processing": true,
                 "serverSide": true,

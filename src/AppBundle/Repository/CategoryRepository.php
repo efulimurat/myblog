@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * CategoryRepository
@@ -14,10 +15,22 @@ class CategoryRepository extends EntityRepository
 {
     public function listAllPageCategories()
     {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT c FROM AppBundle:Category c ORDER BY c.title ASC'
-            )
-            ->getResult();
+        $query = $this->getEntityManager()
+                ->createQueryBuilder()->select("c")
+                ->from("AppBundle:Category","c")
+                ->orderBy("c.title", "ASC");
+        
+        $paginator = new Paginator($query, $fetchJoinCollection = false);
+
+        $c = count($paginator);
+        $categoryData = [];
+
+        foreach ($paginator as $category) {
+            $categoryData[] = $category;
+        }
+        return [
+            "records" => $categoryData,
+            "recordsCount" => $c
+        ];
     }
 }

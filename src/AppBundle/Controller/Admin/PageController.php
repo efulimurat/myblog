@@ -111,7 +111,9 @@ class PageController extends Controller {
         
         $em = $this->getDoctrine()->getEntityManager();
         $page = $em->getRepository('AppBundle:Page')->find($id);
-
+        if(!$page){
+            throw $this->createNotFoundException('Sayfa Bulunamadı');
+        }
         $form = $this->createFormBuilder($page)
                 ->add('category', EntityType::class, array(
                     'label' => "Kategori",
@@ -132,7 +134,7 @@ class PageController extends Controller {
                     "expanded" => true,
                     "required" => true
                 ))
-                ->add('imageFile', FileType::class, array('label' => 'Sayfa Resmi'))
+                ->add('imageFile', FileType::class, array('label' => 'Sayfa Resmi', "required" => false))
                 ->add('save', SubmitType::class, array('label' => 'Kaydet'))
                 ->getForm();
 
@@ -152,6 +154,21 @@ class PageController extends Controller {
         return $this->render('admin/page/pageUpdate.html.twig', array(
                     'form' => $form->createView(),
         ));
+    }
+    
+    /**
+     * @Route("/admin/page/delete/{id}", name="admin_page_delete", requirements={"id": "\d+"})
+     */
+    public function deletePage($id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $page = $em->getRepository('AppBundle:Page')->find($id);
+        if(!$page){
+            throw $this->createNotFoundException('Sayfa Bulunamadı');
+        }
+        $em->remove($page);
+        $em->flush();
+        return $this->redirect($this->generateUrl('admin_page_default'));
     }
 
 }
