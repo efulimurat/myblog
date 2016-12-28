@@ -52,9 +52,12 @@
     if (typeof dataTablesEnabled != "undefined") {
         var dataTablesEnabled = true;
         $(document).ready(function () {
+            
             $('#dataTables-example').DataTable({
                 responsive: true,
-                ajax: dataAjaxUrl
+                "processing": true,
+                "serverSide": true,
+                "ajax": dataAjaxUrl
             });
         });
     }

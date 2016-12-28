@@ -51,7 +51,7 @@ class Page {
      *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
      * )
      * @Vich\UploadableField(mapping="page_image", fileNameProperty="image", nullable=true)
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string",nullable=true)
      */
     private $imageFile;
 
