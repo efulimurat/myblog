@@ -2,13 +2,16 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\Page;
+use AppBundle\Entity\Category;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -25,15 +28,21 @@ class PageController extends Controller {
      * @Route("/admin/page/add", name="admin_page_add")
      */
     public function addPage(Request $request) {
-        // create a task and give it some dummy data for this example
         $page = new Page();
-//        $page->setTitle("Başlık Giriniz");
-//        $page->setContent("Açıklama Giriniz");
 
         $form = $this->createFormBuilder($page)
-                ->add('title', TextType::class)
-                ->add('content', TextareaType::class)
+                ->add('category', EntityType::class, array(
+                    'class' => 'AppBundle:Category',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('c')
+                                ->orderBy('c.title', 'ASC');
+                    },
+                    'choice_label' => 'title',
+                ))
+                ->add('title', TextType::class, array('label' => 'Sayfa Başlığı'))
+                ->add('content', TextareaType::class, array('label' => 'Sayfa İçerik'))
                 ->add('status', "choice", array(
+                    'label' => 'Sayfa Durumu',
                     "choices" => array("1" => "Aktif", "0" => "Pasif"),
                     "multiple" => false,
                     "expanded" => true,
@@ -42,10 +51,13 @@ class PageController extends Controller {
                 ->add('imageFile', FileType::class, array('label' => 'Sayfa Resmi'))
                 ->add('save', SubmitType::class, array('label' => 'Kaydet'))
                 ->getForm();
-        
+
         $form->handleRequest($request);
-       
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+
             $page = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($page);

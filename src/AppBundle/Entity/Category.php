@@ -3,9 +3,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
  * @ORM\Table(name="category",indexes={@ORM\Index(name="search_ind", columns={"slug"})})
  */
 class Category
@@ -39,6 +40,15 @@ class Category
      */
     private $status;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Page", mappedBy="category")
+     */
+    private $pages;
+
+    public function __construct() {
+        $this->pages = new ArrayCollection();
+    }
+    
     public function getId() {
         return $this->id;
     }
@@ -61,5 +71,73 @@ class Category
     public function getStatus() {
         return $this->status;
     }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Set insert_date
+     *
+     * @param \DateTime $insertDate
+     * @return Category
+     */
+    public function setInsertDate($insertDate)
+    {
+        $this->insert_date = $insertDate;
+
+        return $this;
+    }
+
+    /**
+     * Get insert_date
+     *
+     * @return \DateTime 
+     */
+    public function getInsertDate()
+    {
+        return $this->insert_date;
+    }
+
+    /**
+     * Add pages
+     *
+     * @param \AppBundle\Entity\Page $pages
+     * @return Category
+     */
+    public function addPage(\AppBundle\Entity\Page $pages)
+    {
+        $this->pages[] = $pages;
+
+        return $this;
+    }
+
+    /**
+     * Remove pages
+     *
+     * @param \AppBundle\Entity\Page $pages
+     */
+    public function removePage(\AppBundle\Entity\Page $pages)
+    {
+        $this->pages->removeElement($pages);
+    }
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
 }
-?>
