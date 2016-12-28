@@ -14,27 +14,11 @@
                     </button>
                 </div>
 
+
             </div>
         </nav><!-- #top-nav -->
 
-        <!-- MAIN NAVBAR
-        ================ -->
-        <nav class="navbar navbar-default" id="main-nav" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"><img src="/assets/img/logo.png" alt="logo"></a>
-                </div>
-
-               
-            </div>
-        </nav><!--#main-nav-->  
+        {% render(controller('AppBundle:Default:getHeaderCategories')) %}
 
     </header>  
 {% endblock %}

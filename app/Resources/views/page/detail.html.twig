@@ -1,0 +1,145 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div id="title">
+                                <div class="image-light"></div>
+                                <div class="container">
+                                        <div class="title-container">
+                                                <h3 class="primary">{{ Page.title}}</h3>     
+                                        </div>
+                                </div>
+                        </div>
+    <div id="content">    
+        <div class="container">
+            <div class="row">       
+                <!-- MAIN CONTENT
+                ================= -->
+                <main id="main-content" class="col-md-8">
+
+                  
+                    <!-- POST CONTENT -->
+                    <article class="article-large hentry">      
+                        <!--Image-->
+                        <div class="frame thick clearfix">
+                            <a href="/images/pages/{{ Page.image}}" class="image" data-lightbox title="{{ Page.title}}">
+                                <figure class="image-holder">
+                                    <img src="/images/pages/{{ Page.image}}" alt="{{ Page.title}}">
+                                </figure>
+                                <div class="image-light"></div>
+                            </a>
+                           
+                            <p class="post-meta entry-footer pull-right">
+                                <a href="#" rel="bookmark"><time class="entry-date published updated" datetime="2014-01-08T11:42:20+00:00">Thursday, January 09, 2014 at 11:42 AM</time></a>
+                            </p>
+                        </div>
+                        <img src="/assets/img/shadow.png" class="shadow" alt="shadow">                                                        
+
+                                                                                 
+
+                            <div class="entry-content">
+                                <p>
+                                    {{ Page.content}}
+                                </p>
+                                
+                            </div><!-- .entry-content -->                                                        
+
+                    </article><!-- .hentry -->
+
+
+                    <!-- RELATED POSTS -->
+                    <section class="widget">
+                        <!--Widget header-->
+                        <header class="clearfix"><h4>Related</h4></header>
+
+                        <!--Widget Contents-->
+                        <div class="row">
+                            <div class="article-small col-md-3 col-sm-6">                                        
+                                <a href="#" class="image">
+                                    <figure class="image-holder">
+                                        <img src="http://placehold.it/165x90" alt="Vestibulum a lacus suscipit sodales augue">
+                                    </figure>
+                                    <div class="image-light"></div>
+                                    <span class="dashicons dashicons-format-audio"></span>
+                                </a>
+                                <h5><a href="#">Vestibulum a lacus suscipit sodales augue</a></h5>
+                                <p class="post-meta">
+                                    <a href="#"><span class="fa fa-clock-o"></span> Dec 4, 2013</a> &nbsp;
+                                    <a href="#"><span class="fa fa-comments"></span> 1,324</a>
+                                </p>
+                                <hr class="visible-sm visible-xs">
+                            </div>
+
+                            <div class="article-small col-md-3 col-sm-6">                                        
+                                <a href="#" class="image">
+                                    <figure class="image-holder">
+                                        <img src="http://placehold.it/165x90" alt="Drugs suscipit neque eu viverra justo ">
+                                    </figure>
+                                    <div class="image-light"></div>
+                                    <span class="dashicons dashicons-format-chat"></span>
+                                </a>
+                                <h5><a href="#">Drugs suscipit neque eu viverra justo </a></h5>
+                                <p class="post-meta">
+                                    <a href="#"><span class="fa fa-clock-o"></span> Dec 4, 2013</a> &nbsp;
+                                    <a href="#"><span class="fa fa-comments"></span> 1,324</a>
+                                </p>
+                                <hr class="visible-sm visible-xs">
+                            </div>
+
+                            <div class="article-small col-md-3 col-sm-6">                                        
+                                <a href="#" class="image">
+                                    <figure class="image-holder">
+                                        <img src="http://placehold.it/165x90" alt="uss constitution boston massachusetts ">
+                                    </figure>
+                                    <div class="image-light"></div>
+                                    <span class="dashicons dashicons-format-gallery"></span>
+                                </a>
+                                <h5><a href="#">Climb ultrices tellus massa quis Vestibulum</a></h5>
+                                <p class="post-meta">
+                                    <a href="#"><span class="fa fa-clock-o"></span> Dec 4, 2013</a> &nbsp;
+                                    <a href="#"><span class="fa fa-comments"></span> 1,324</a>
+                                </p>
+                                <hr class="visible-sm visible-xs">
+                            </div>
+
+                            <div class="article-small col-md-3 col-sm-6">                                        
+                                <a href="#" class="image">
+                                    <figure class="image-holder">
+                                        <img src="http://placehold.it/165x90" alt="vitae accumsan quam auctor Praesent dignissim ">
+                                    </figure>
+                                    <div class="image-light"></div>
+                                    <span class="dashicons dashicons-format-image"></span>
+                                </a>
+                                <h5><a href="#">vitae accumsan quam auctor Praesent</a></h5>
+                                <p class="post-meta">
+                                    <a href="#"><span class="fa fa-clock-o"></span> Dec 4, 2013</a> &nbsp;
+                                    <a href="#"><span class="fa fa-comments"></span> 1,324</a>
+                                </p>
+                                <hr class="visible-sm visible-xs">
+                            </div>
+                        </div>
+                    </section>
+
+                </main><!--#main-content-->
+
+                <!-- SIDEBAR 
+                ============ -->
+                <aside class="col-md-4">
+                    <div class="row">
+                        <!-- SEARCH WIDGET -->
+                        <section class="col-sm-6 col-md-12 widget">
+                            <!-- Widget header -->
+                            <header class="clearfix"><h4>Search Widget</h4></header>  
+
+                            <!-- Widget content -->
+                            <form method="get" action="home-version-1.html">
+                                <input type="search" placeholder="Enter keywords">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                            </form>
+                        </section>
+
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div><!--#content-->
+{% endblock %}

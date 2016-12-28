@@ -24,5 +24,13 @@ class DefaultController extends Controller {
 
         return $this->render('default/index.html.twig', ["records" => $pages["records"]]);
     }
+    
+    public function getHeaderCategoriesAction() {
+        
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('AppBundle:Category')
+                ->listActivePageCategories();
+        return $this->render('default/menu.html.twig',["categories" => $categories]);
+    }
 
 }

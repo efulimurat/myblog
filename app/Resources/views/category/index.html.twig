@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div id="content">            
+        <div class="container">
+            <div class="row">
+                <!-- MAIN CONTENT
+                ================= -->
+                <main id="main-content" class="col-md-12">
+
+                    <div class="row">
+                        {% for article in records %}
+                            <div class="col-md-6">
+                                <article class="article-large">
+                                    <!--frame-->
+                                    <div class="frame thick">
+                                        <a href="{{ path("page_detail", {'slug':article.slug }) }}" class="image">
+                                            <figure class="image-holder">
+                                                <img src="/images/pages/{{ article.image }}" width="730" alt="{{ article.title }}">
+                                            </figure>
+                                            <div class="image-light"></div>
+                                        </a>
+
+
+                                        <h4><a href="{{ path("page_detail", {'slug':article.slug }) }}">{{article.title}}</a></h4>
+                                        <p class="post-meta"><a href="#">{{ article.updateDate|date("F jS \\a\\t g:i A", "Europe/Istanbul") }}</a></p>
+                                    </div>                            
+                                    <img src="/assets/img/shadow.png" class="shadow" alt="shadow">
+
+                                        <!--Content-->
+                                        <p>
+                                            {{article.content}}    
+                                        </p>
+
+                                </article> 
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- PAGINATION -->
+                    <ul class="pagination">
+                        <li><a href="#" title="prev"><i class="fa fa-angle-double-left"></i></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" title="next"><i class="fa fa-angle-double-right"></i></a></li>
+                    </ul>
+                </main><!--#main-content-->
+
+
+            </div>
+        </div>
+    </div><!--#content-->
+{% endblock %}

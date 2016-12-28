@@ -1,0 +1,21 @@
+{
+    "name": "enuygun-assets",
+    "version": "1.0.0",
+    "description": "En Uygun Blog Gulp ile assetleri sıkıştırma",
+    "main": "gulpfile.js",
+    "scripts": {
+        "test": "gulp"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "browser-sync": "^2.18.5",
+        "gulp": "^3.9.1",
+        "gulp-clean-css": "^2.3.2",
+        "gulp-less": "^3.3.0",
+        "gulp-rename": "^1.2.2",
+        "gulp-uglify": "^1.5.4",
+        "gulp-util": "^3.0.7"
+    }
+}
+

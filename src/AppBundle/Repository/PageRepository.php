@@ -60,7 +60,38 @@ class PageRepository extends EntityRepository {
                 "content" => $page->getContent(),
                 "image" => $page->getImage(),
                 "imageFile" => $page->getImageFile(),
-                "slug" => $page->getSlug()
+                "slug" => $page->getSlug(),
+                "updateDate" => $page->getUpdateDate(),
+            ];
+        }
+        return [
+            "records" => $pageData,
+            "recordsCount" => $c
+        ];
+    }
+    public function listCategoryPages($category_id,$start = 0) {
+        $length = 6;
+        $query = $this->getEntityManager()
+                ->createQueryBuilder()->select("p")
+                ->from("AppBundle:Page", "p")
+                ->orderBy("p.id", "DESC")
+                ->where("p.status = 1 AND p.category = ?1")
+                ->setParameter(1, $category_id)
+                ->setMaxResults($length)
+                ->setFirstResult($start);
+        $paginator = new Paginator($query, $fetchJoinCollection = true);
+
+        $c = count($paginator);
+        $pageData = [];
+        foreach ($paginator as $page) {
+            $pageData[] = [
+                "id" => $page->getId(),
+                "title" => $page->getTitle(),
+                "content" => $page->getContent(),
+                "image" => $page->getImage(),
+                "imageFile" => $page->getImageFile(),
+                "slug" => $page->getSlug(),
+                "updateDate" => $page->getUpdateDate(),
             ];
         }
         return [
@@ -74,17 +105,13 @@ class PageRepository extends EntityRepository {
          $query = $this->getEntityManager()
                 ->createQueryBuilder()->select("p")
                 ->from("AppBundle:Page", "p")
-                ->where("p.slug = ? AND p.status = 1")
+                ->where("p.slug = ?1 AND p.status = 1")
                  ->setParameter(1, $slug)
-                ->setMaxResults($length)
-                ->setFirstResult($start);
+                ->getQuery();
 
-        $page = $query->getResult();
-        print_r($page);exit;
-        return [
-            "records" => $pageData,
-            "recordsCount" => $c
-        ];
+        $pageDetails = $query->getSingleResult();
+        
+        return $pageDetails;
     }
 
 }

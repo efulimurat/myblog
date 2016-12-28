@@ -11,3 +11,4 @@
 /bin/
 /composer.phar
 /web/images
+/web/assets/node_modules
